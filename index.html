@@ -5,14 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For My Baby ❤️</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    .intro-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .intro-button {
+      background: #ff007f;
+      border: none;
+      padding: 20px 50px;
+      font-size: 28px;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 25px #ff007f;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 25px #ff007f; }
+      50% { transform: scale(1.1); box-shadow: 0 0 45px #ff007f; }
+      100% { transform: scale(1); box-shadow: 0 0 25px #ff007f; }
+    }
+
+    body.hidden-content {
+      overflow: hidden;
+    }
+  </style>
 </head>
-<body>
-  <!-- Background Music -->
-  <audio id="bg-music" autoplay loop>
-    <source src="love.mp3" type="audio/mpeg">
+<body class="hidden-content">
+  <!-- 🔊 Music -->
+  <audio id="bg-music" loop>
+    <source src="music/your-music.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
+  <!-- 🖤 Intro Overlay -->
+  <div class="intro-screen" id="intro">
+    <button class="intro-button" id="openBtn">Open This</button>
+  </div>
+
+  <!-- 💖 Main Site -->
   <div class="hero">
     <h1>For My Baby ❤️</h1>
     <p class="subtitle">I love you soo much my baby. You are my everything.</p>
@@ -31,10 +78,9 @@
   <section class="gallery">
     <h2>I love you from the bottom of my heart.</h2>
     <div class="photos">
-      <img src="photo1.jpg" alt="" />
-      <img src="photo2.jpg" alt="" />
-      <img src="photo3.jpg" alt="" />
-      <!-- Add more photos here -->
+      <img src="images/photo1.jpg" alt="" />
+      <img src="images/photo2.jpg" alt="" />
+      <img src="images/photo3.jpg" alt="" />
     </div>
   </section>
 
@@ -49,20 +95,16 @@
     Made with all my heart. 💕
   </footer>
 
-  <!-- Autoplay fallback -->
   <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      const audio = document.getElementById('bg-music');
+    const openBtn = document.getElementById('openBtn');
+    const intro = document.getElementById('intro');
+    const audio = document.getElementById('bg-music');
+    const body = document.body;
 
-      // Attempt autoplay
-      function enableAudio() {
-        audio.play().catch(() => {
-          // If blocked, wait for user interaction
-          document.body.addEventListener('click', () => audio.play(), { once: true });
-        });
-      }
-
-      enableAudio();
+    openBtn.addEventListener('click', () => {
+      audio.play().catch(err => console.log("Autoplay failed", err));
+      intro.classList.add('hidden');
+      body.classList.remove('hidden-content');
     });
   </script>
 </body>
