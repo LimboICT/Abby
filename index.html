@@ -7,6 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="love.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
   <div class="hero">
     <h1>For My Baby ❤️</h1>
     <p class="subtitle">I love you soo much my baby. You are my everything.</p>
@@ -35,15 +41,29 @@
   <section class="letter">
     <h2>A Letter to You</h2>
     <p>
-      I love you soo much Abby. You always bring me joy in everything we do. We oftend fight because of misuderstandings or because of me. But I'm willing to grow for you. Be more open and be the man that you dream off. I love you my baby.. Always. 💕💕💕
+      I love you soo much Abby. You always bring me joy in everything we do. We often fight because of misunderstandings or because of me. But I'm willing to grow for you. Be more open and be the man that you dream of. I love you my baby.. Always. 💕💕💕
     </p>
   </section>
-
-  <!-- Optional music embed -->
-  <!-- Add your music player or Spotify embed here -->
 
   <footer>
     Made with all my heart. 💕
   </footer>
+
+  <!-- Autoplay fallback -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      const audio = document.getElementById('bg-music');
+
+      // Attempt autoplay
+      function enableAudio() {
+        audio.play().catch(() => {
+          // If blocked, wait for user interaction
+          document.body.addEventListener('click', () => audio.play(), { once: true });
+        });
+      }
+
+      enableAudio();
+    });
+  </script>
 </body>
 </html>
