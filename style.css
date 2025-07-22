@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #fff1f1, #ffeaea);
+  color: #333;
+  overflow-x: hidden;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #ffcccc;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.compliments span {
+  position: absolute;
+  font-size: 1.2rem;
+  color: #ff69b4;
+  animation: fall 10s linear infinite;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+@keyframes fall {
+  0% {
+    top: -10%;
+    left: calc(100% * var(--start));
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 110%;
+    left: calc(100% * var(--end));
+    transform: rotate(360deg);
+  }
+}
+
+/* Random positions for falling compliments */
+.compliments span:nth-child(1) { --start: 0.1; --end: 0.15; animation-delay: 0s; }
+.compliments span:nth-child(2) { --start: 0.3; --end: 0.35; animation-delay: 2s; }
+.compliments span:nth-child(3) { --start: 0.5; --end: 0.45; animation-delay: 4s; }
+.compliments span:nth-child(4) { --start: 0.7; --end: 0.75; animation-delay: 6s; }
+.compliments span:nth-child(5) { --start: 0.9; --end: 0.85; animation-delay: 8s; }
+.compliments span:nth-child(6) { --start: 0.2; --end: 0.25; animation-delay: 1s; }
+.compliments span:nth-child(7) { --start: 0.6; --end: 0.65; animation-delay: 3s; }
+
+.gallery {
+  padding: 2rem;
+  background: #fff;
+}
+
+.gallery h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.photos img {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.letter {
+  padding: 2rem;
+  background: #ffecec;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #ffc0cb;
+  font-weight: bold;
+}
