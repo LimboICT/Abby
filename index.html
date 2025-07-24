@@ -1,111 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For My Baby ❤️</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    .intro-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 9999;
-      transition: opacity 1s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #ffebee;
+            color: #d32f2f;
+            overflow-x: hidden;
+        }
 
-    .intro-screen.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
 
-    .intro-button {
-      background: #ff007f;
-      border: none;
-      padding: 20px 50px;
-      font-size: 28px;
-      color: white;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 0 25px #ff007f;
-      animation: pulse 2s infinite;
-    }
+        header {
+            padding: 40px 0;
+            position: relative;
+        }
 
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 25px #ff007f; }
-      50% { transform: scale(1.1); box-shadow: 0 0 45px #ff007f; }
-      100% { transform: scale(1); box-shadow: 0 0 25px #ff007f; }
-    }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
 
-    body.hidden-content {
-      overflow: hidden;
-    }
-  </style>
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4081;
+            transform: rotate(45deg);
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .heart:before, .heart:after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+
+        .heart:after {
+            top: 0;
+            left: -15px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: rotate(45deg) translateY(0); }
+            50% { transform: rotate(45deg) translateY(-20px); }
+        }
+
+        .message-box {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-box:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed #ff4081;
+            border-radius: 20px;
+            z-index: -1;
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .interactive-element {
+            margin: 40px 0;
+        }
+
+        .love-button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .love-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .memory-box {
+            background-color: #f8bbd0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .memory-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-box h3 {
+            margin-top: 0;
+            color: #c2185b;
+        }
+
+        .fidget-spinner {
+            width: 100px;
+            height: 100px;
+            margin: 40px auto;
+            cursor: pointer;
+        }
+
+        .spinner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 10px solid #f8bbd0;
+            border-top-color: #ff4081;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .music-player {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .music-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .music-controls button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.1);
+        }
+
+        footer {
+            padding: 30px 0;
+            font-size: 0.9rem;
+            color: #e91e63;
+        }
+
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .draggable {
+            position: absolute;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .draggable:active {
+            cursor: grabbing;
+        }
+
+        .hidden-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            max-width: 80%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ff4081;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+            z-index: 98;
+        }
+    </style>
 </head>
-<body class="hidden-content">
-  <!-- 🔊 Music -->
-  <audio id="bg-music" loop>
-    <source src="music/love.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+<body>
+    <div class="hearts-container" id="hearts-container"></div>
+    <div class="overlay" id="overlay"></div>
 
-  <!-- 🖤 Intro Overlay -->
-  <div class="intro-screen" id="intro">
-    <button class="intro-button" id="openBtn">Open This</button>
-  </div>
-
-  <!-- 💖 Main Site -->
-  <div class="hero">
-    <h1>For My Baby ❤️</h1>
-    <p class="subtitle">I love you soo much my baby. You are my everything.</p>
-  </div>
-
-  <div class="compliments">
-    <span>Beautiful</span>
-    <span>Spoiled</span>
-    <span>Independent</span>
-    <span>Strong</span>
-    <span>Hot</span>
-    <span>Precious</span>
-    <span>Lovely</span>
-  </div>
-
-  <section class="gallery">
-    <h2>I love you from the bottom of my heart.</h2>
-    <div class="photos">
-      <img src="images/photo1.jpg" alt="" />
-      <img src="images/photo2.jpg" alt="" />
-      <img src="images/photo3.jpg" alt="" />
+    <div class="hidden-message" id="hidden-message">
+        <button class="close-btn" id="close-btn">×</button>
+        <h2>My Secret Message for You</h2>
+        <p id="secret-message-text">I love you very much from the bottom of my heart. To be honest you're the best thing thats ever happened to me all my life. Even though we haven't met, I love you soo much already, It's actually crazy. I'm soo in love with you to the point that I love to spend the rest of my life with you. You are worth it. Sooo worth it baby. I love you soo much I LOVE YOU.</p>
     </div>
-  </section>
 
-  <section class="letter">
-    <h2>A Letter to You</h2>
-    <p>
-      I love you soo much Abby. You always bring me joy in everything we do. We often fight because of misunderstandings or because of me. But I'm willing to grow for you. Be more open and be the man that you dream of. I love you my baby.. Always. 💕💕💕
-    </p>
-  </section>
+    <div class="container">
+        <header>
+            <h1>I LOVE YOUU!!!!</h1>
+            <p>This is for you bebe kooo!!</p>
+        </header>
 
-  <footer>
-    Made with all my heart. 💕
-  </footer>
+        <div class="message-box">
+            <h2>My Love Letter</h2>
+            <p>I'm happy how my life turned out to be when I'm with you. Kase even though di pa tayo nag kikita seryoso na seryoso na ako sayo. It's not a joke.</p>
+            <p>I'm glad that I met you and joined that roblox game with bon. If I had not done that I don't think I would have met you. I am thankful that god gave me you. You're the best thing that ever happened to me.</p>
+            <p>I know parang ang OA ko na pero ganun na talaga I already love youu soo much baby. I know I've said this a lot of times. I'll put it here on this website na kase para mabalik balikan mo always baby. I love you.</p>
+            <p><strong>Francis - Limbo</strong></p>
+        </div>
 
-  <script>
-    const openBtn = document.getElementById('openBtn');
-    const intro = document.getElementById('intro');
-    const audio = document.getElementById('bg-music');
-    const body = document.body;
+        <div class="interactive-element">
+            <button class="love-button" id="love-button">Click for a Surprise!</button>
+        </div>
 
-    openBtn.addEventListener('click', () => {
-      audio.play().catch(err => console.log("Autoplay failed", err));
-      intro.classList.add('hidden');
-      body.classList.remove('hidden-content');
-    });
-  </script>
+        <div class="fidget-spinner" id="fidget-spinner">
+            <div class="spinner"></div>
+        </div>
+
+        <div class="memory-box" onclick="this.querySelector('p').style.display = this.querySelector('p').style.display === 'none' ? 'block' : 'none'">
+            <h3>Your Pictures!</h3>
+            <p style="display: none;">My Beautiful Baby!</p>
+        </div>
+
+        <div class="memory-box" onclick="this.querySelector('p').style.display = this.querySelector('p').style.display === 'none' ? 'block' : 'none'">
+            <h3>Your Pictures!</h3>
+            <p style="display: none;">My Beautiful Baby!</p>
+        </div>
+
+        <div class="photo-gallery">
+            <div class="photo">
+                <img src="photo1.jpg" alt="Still Empty">
+            </div>
+            <div class="photo">
+                <img src="photo2.jpg" alt="Still Empty">
+            </div>
+            <div class="photo">
+                <img src="photo3.jpg" alt="Still Empty">
+            </div>
+            <div class="photo">
+                <img src="photo4.jpg" alt="Still Empty">
+            </div>
+        </div>
+
+        <div class="music-player">
+            <h2>Song Player</h2>
+            <p>The song I told you that you remind me of.</p>
+            <audio id="our-song" src="love.mp3" autoplay loop playsinline></audio>
+            <div class="music-controls">
+                <button id="play-btn">▶️</button>
+                <button id="pause-btn">⏸️</button>
+                <button id="stop-btn">⏹️</button>
+            </div>
+        </div>
+
+        <div class="draggable" style="top: 300px; left: 100px;">💖</div>
+        <div class="draggable" style="top: 400px; left: 200px;">✨</div>
+        <div class="draggable" style="top: 500px; left: 150px;">🌸</div>
+
+        <footer>
+            <p>Made with love for the most wonderful person in my life</p>
+            <p>© Francis - Limbo</p>
+        </footer>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                heart.style.transform = `rotate(45deg) scale(${Math.random() * 0.5 + 0.5})`;
+                container.appendChild(heart);
+            }
+        }
+
+        // Love button functionality
+        document.getElementById('love-button').addEventListener('click', function() {
+            const overlay = document.getElementById('overlay');
+            const hiddenMessage = document.getElementById('hidden-message');
+            createConfetti();
+            overlay.style.display = 'block';
+            hiddenMessage.style.display = 'block';
+        });
+
+        // Close button functionality
+        document.getElementById('close-btn').addEventListener('click', function() {
+            const overlay = document.getElementById('overlay');
+            const hiddenMessage = document.getElementById('hidden-message');
+            overlay.style.display = 'none';
+            hiddenMessage.style.display = 'none';
+        });
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff0000', '#ff4081', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.opacity = Math.random() * 0.5 + 0.5;
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                document.body.appendChild(confetti);
+                const keyframes = `
+                    @keyframes fall {
+                        0% {
+                            transform: translateY(-100vh) rotate(0deg);
+                            opacity: ${Math.random() * 0.5 + 0.5};
+                        }
+                        100% {
+                            transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                const style = document.createElement('style');
+                style.innerHTML = keyframes;
+                document.head.appendChild(style);
+                setTimeout(() => {
+                    confetti.remove();
+                    style.remove();
+                }, 5000);
+            }
+        }
+
+        // Music player functionality
+        const audio = document.getElementById('our-song');
+        document.getElementById('play-btn').addEventListener('click', () => audio.play());
+        document.getElementById('pause-btn').addEventListener('click', () => audio.pause());
+        document.getElementById('stop-btn').addEventListener('click', () => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+
+        // Make elements draggable
+        document.querySelectorAll('.draggable').forEach(element => {
+            let isDragging = false;
+            let offsetX, offsetY;
+            element.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - element.getBoundingClientRect().left;
+                offsetY = e.clientY - element.getBoundingClientRect().top;
+                element.style.cursor = 'grabbing';
+            });
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    element.style.left = (e.clientX - offsetX) + 'px';
+                    element.style.top = (e.clientY - offsetY) + 'px';
+                }
+            });
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                element.style.cursor = 'grab';
+            });
+        });
+
+        // Fidget spinner interaction
+        const spinner = document.getElementById('fidget-spinner');
+        let spinInterval;
+        let rotation = 0;
+        spinner.addEventListener('mousedown', () => {
+            spinInterval = setInterval(() => {
+                rotation += 10;
+                spinner.querySelector('.spinner').style.transform = `rotate(${rotation}deg)`;
+            }, 50);
+        });
+        spinner.addEventListener('mouseup', () => {
+            clearInterval(spinInterval);
+            const slowDown = setInterval(() => {
+                rotation += 2;
+                spinner.querySelector('.spinner').style.transform = `rotate(${rotation}deg)`;
+                if (rotation % 360 < 1) {
+                    clearInterval(slowDown);
+                }
+            }, 50);
+        });
+
+        // Initialize
+        window.onload = function() {
+            createHearts();
+
+            // Autoplay with fade-in and mobile support
+            const audio = document.getElementById('our-song');
+            audio.muted = true;
+            audio.volume = 0;
+            audio.play().then(() => {
+                audio.muted = false;
+                audio.play();
+                let vol = 0;
+                const fadeIn = setInterval(() => {
+                    if (vol < 1) {
+                        vol += 0.05;
+                        audio.volume = Math.min(vol, 1);
+                    } else {
+                        clearInterval(fadeIn);
+                    }
+                }, 200);
+            });
+
+            document.querySelectorAll('.memory-box').forEach((box, index) => {
+                box.style.animationDelay = `${index * 0.2}s`;
+            });
+        };
+    </script>
 </body>
 </html>
